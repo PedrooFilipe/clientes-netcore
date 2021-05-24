@@ -51,7 +51,7 @@ namespace clientes_api.Controllers
                 }
             }else
             {
-                return BadRequest("Cliente não encontrado");
+                return BadRequest("Cliente não encontradoooo");
             }
         }
 
