@@ -29,7 +29,7 @@ namespace clientes_api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao adicionar cliente");            
+                return BadRequest("Erro ao adicionar clientee");            
             }
         }
 
