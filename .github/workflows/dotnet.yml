@@ -1,23 +1,26 @@
-name: .NET CORE
-
+name: Continous Delivery .NET CORE
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
+  workflow_dispatch:
+
 jobs:
-  build:
-
+  CD:
+    name: Continuous Delivery
     runs-on: ubuntu-20.04
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+      - name: SSH into production server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER_SSH }}
+          key: ${{secrets.PASSWORD_SSH}}
+          port: 22
+          script: |
+            cd clientes-netcore
+            git pull origin master
+            dotnet deploy -c Release
+            pm2 restart clientes-api
