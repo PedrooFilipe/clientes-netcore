@@ -22,5 +22,5 @@ jobs:
           script: |
             cd clientes-netcore
             git pull origin master
-            dotnet deploy -c Release
-            pm2 restart clientes-api
+            dotnet publish -c Release
+            pm2 reload clientes-api
