@@ -53,16 +53,14 @@ namespace clientes_api
             app.UseAuthorization();
 
             app.UseCors();
+            
+            app.UseHttpsRedirection();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
             
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers().RequireCors("MyCors");
-            //});
         }
     }
 }
