@@ -31,7 +31,7 @@ namespace clientes_api
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("*").AllowAnyHeader();
+                        builder.WithOrigins("*").WithHeaders("*").WithMethods("*");
                     });
             });
 
