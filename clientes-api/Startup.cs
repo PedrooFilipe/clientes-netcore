@@ -44,7 +44,7 @@ namespace clientes_api
             app.UseAuthorization();
 
             app.UseCors(x => x
-                       .AllowAnyOrigin()
+                       .WithOrigins("http://localhost:4803")
                        .AllowAnyMethod()
                        .AllowAnyHeader()
                        .AllowCredentials());
