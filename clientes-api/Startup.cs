@@ -44,7 +44,7 @@ namespace clientes_api
             app.UseAuthorization();
 
             app.UseCors(x => x
-                       .SetIsOriginAllowed(origin => true)
+                       .AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader()
                        .AllowCredentials());
