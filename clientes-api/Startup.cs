@@ -26,14 +26,7 @@ namespace clientes_api
 
             services.AddDbContext<Contexto>(options => options.UseMySql(Configuration.GetConnectionString("mysqlConnection")));
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", builder => builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-            });
-
+            services.AddCors();
 
             services.AddScoped<IClienteDAO, ClienteDAO>();
         }
@@ -50,14 +43,11 @@ namespace clientes_api
 
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=Cliente}/{action=Index}/{id?}");
-            //});
-
-            app.UseCors("CorsPolicy");
+            app.UseCors(x => x
+                       .SetIsOriginAllowed(origin => true)
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials());
 
             app.UseEndpoints(endpoints =>
             {
