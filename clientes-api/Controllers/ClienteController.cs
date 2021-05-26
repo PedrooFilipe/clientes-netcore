@@ -1,6 +1,7 @@
 ﻿using clientes_api.Interfaces;
 using clientes_api.Model;
 using clientes_api.Model.Rest;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace clientes_api.Controllers
         {
             this.iClienteDAO = iClienteDAO;
         }
-
+        
         [Route("cadastrar"), HttpPost]
         public ActionResult Cadastrar([FromBody] Cliente cliente)
         {
@@ -67,7 +68,7 @@ namespace clientes_api.Controllers
 
             int totalPages = int.Parse(Math.Truncate(totalCalculation + 1).ToString());
 
-            response.Data = clientes.Skip(skip).Take(5).ToList();
+            response.Data = clientes.Skip(skip).Take(10).ToList();
             response.Paginator = new Paginator()
             {
                 Current = page,
