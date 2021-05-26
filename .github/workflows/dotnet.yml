@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-    connect:
+    CD:
         name: Connect server
         runs-on: ubuntu-20.04
         steps:
@@ -17,12 +17,7 @@ jobs:
               username: ${{ secrets.USER_SSH }}
               key: ${{secrets.SSH_KEY}}
               port: 22
-    pull:
-        needs: connect
-        name: Pull Files on Server
-        runs-on: ubuntu-20.04
-        steps:
-          - name: Access server
+          - name: pull
             run: |
-                cd clientes-netcore
-                git pull origin master
+              cd clientes-netcore
+              git pull origin master
