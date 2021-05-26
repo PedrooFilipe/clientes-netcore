@@ -1,27 +1,28 @@
 name: Continous Delivery .NET CORE
 on:
   push:
-    tags: [ '*.prod' ]
-  pull_request:
     branches: [ master ]
-    tags: [ '*.prod' ]
 
   workflow_dispatch:
 
 jobs:
-  CD:
-    name: Continuous Delivery
-    runs-on: ubuntu-20.04
-    steps:
-      - name: SSH into production server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER_SSH }}
-          key: ${{secrets.SSH_KEY}}
-          port: 22
-          script: |
-            cd clientes-netcore
-            git pull origin master
-            dotnet publish -c Release
-            pm2 reload clientes-api
+    connect:
+        name: Connect server
+        runs-on: ubuntu-20.04
+        steps:
+          - name: Access server
+            uses: appleboy/ssh-action@master
+            with:
+              host: ${{ secrets.HOST }}
+              username: ${{ secrets.USER_SSH }}
+              key: ${{secrets.SSH_KEY}}
+              port: 22
+    pull:
+        needs: connect
+        name: Pull Files on Server
+        runs-on: ubuntu-20.04
+        steps:
+          - name: Access server
+            run: |
+                cd clientes-netcore
+                git pull origin master
