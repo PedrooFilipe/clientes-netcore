@@ -13,6 +13,7 @@ namespace clientes_api.Model
         public DateTime? DataCadastro { get; set; }
         public string TipoPessoa { get; set; }
         public string CodigoSap { get; set; }
+        [Required(ErrorMessage ="Nome é obrigatório")]
         public string Nome { get; set; }
         public string WebSite { get; set; }
         public string Email { get; set; }
