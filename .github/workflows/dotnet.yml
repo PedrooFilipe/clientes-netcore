@@ -1,7 +1,6 @@
 name: Continous Delivery .NET CORE
 on:
   push:
-    branches: [ master ]
     tags: [ '*.prod' ]
   pull_request:
     branches: [ master ]
