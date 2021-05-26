@@ -18,6 +18,7 @@ jobs:
               key: ${{secrets.SSH_KEY}}
               port: 22
           - name: pull
-            run: |
-              cd clientes-netcore
-              git pull origin master
+            with: 
+              script: |
+                cd clientes-netcore
+                git pull origin master
