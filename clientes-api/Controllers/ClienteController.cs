@@ -34,16 +34,17 @@ namespace clientes_api.Controllers
             }
         }
 
-        [Route("alterar"), HttpPut]
-        public ActionResult Alterar(int id)
+        [Route("alterar/{id}"), HttpPut]
+        public ActionResult Alterar(int id, [FromBody] Cliente clienteParam)
         {
             Cliente cliente = iClienteDAO.ProcurarPorId(id);
 
             if(cliente != null)
             {
+                clienteParam.Id = cliente.Id;
                 try
                 {
-                    iClienteDAO.Alterar(cliente);
+                    iClienteDAO.Alterar(clienteParam);
                     return Ok();
                 }
                 catch (Exception e)
@@ -52,7 +53,7 @@ namespace clientes_api.Controllers
                 }
             }else
             {
-                return BadRequest("Cliente não encontradoooo");
+                return BadRequest("Cliente não encontrado");
             }
         }
 
@@ -74,6 +75,17 @@ namespace clientes_api.Controllers
                 Current = page,
                 Total = totalPages
             };
+
+            return response;
+        }
+
+        [Route("buscar/{id}"), HttpGet]
+        public RestResponse<Cliente> buscar(int id)
+        {
+            Cliente cliente = iClienteDAO.ProcurarPorId(id);
+            RestResponse<Cliente> response = new RestResponse<Cliente>();
+
+            response.Data = cliente;
 
             return response;
         }
