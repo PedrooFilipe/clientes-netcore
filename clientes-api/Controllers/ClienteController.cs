@@ -73,7 +73,7 @@ namespace clientes_api.Controllers
 
             int totalPages = int.Parse(Math.Truncate(totalCalculation + 1).ToString());
 
-            response.Data = clientes.Skip(skip).Take(10).ToList();
+            response.Data = clientes.Skip(skip).Take(resultsPerPage).ToList();
             response.Paginator = new Paginator()
             {
                 Current = page,
