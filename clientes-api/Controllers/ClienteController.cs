@@ -41,7 +41,6 @@ namespace clientes_api.Controllers
 
             if(cliente != null)
             {
-                clienteParam.Id = cliente.Id;
                 try
                 {
                     iClienteDAO.Alterar(clienteParam);
@@ -80,7 +79,7 @@ namespace clientes_api.Controllers
         }
 
         [Route("buscar/{id}"), HttpGet]
-        public RestResponse<Cliente> buscar(int id)
+        public RestResponse<Cliente> Buscar(int id)
         {
             Cliente cliente = iClienteDAO.ProcurarPorId(id);
             RestResponse<Cliente> response = new RestResponse<Cliente>();
