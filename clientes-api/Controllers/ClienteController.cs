@@ -42,6 +42,7 @@ namespace clientes_api.Controllers
 
             if(cliente != null)
             {
+                clienteParam.Id = cliente.Id;
                 try
                 {
                     response.Data = iClienteDAO.Alterar(clienteParam);
