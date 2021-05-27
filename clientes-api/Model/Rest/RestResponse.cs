@@ -8,6 +8,7 @@ namespace clientes_api.Model.Rest
     public class RestResponse<T> where T : class
     {
         public T Data { get; set; }
+        public string ResponseMessage {get; set;}
         public Paginator Paginator { get;  set;}
     }
 

@@ -9,7 +9,7 @@ namespace clientes_api.Interfaces
     {
         void Cadastrar(Cliente cliente);
 
-        void Alterar(Cliente cliente);
+        Cliente Alterar(Cliente cliente);
 
         List<Cliente> Listar(string nome);
 

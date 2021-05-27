@@ -35,25 +35,29 @@ namespace clientes_api.Controllers
         }
 
         [Route("alterar/{id}"), HttpPut]
-        public ActionResult Alterar(int id, [FromBody] Cliente clienteParam)
+        public RestResponse<Cliente> Alterar(int id, [FromBody] Cliente clienteParam)
         {
             Cliente cliente = iClienteDAO.ProcurarPorId(id);
+            RestResponse<Cliente> response = new RestResponse<Cliente>();
 
             if(cliente != null)
             {
                 try
                 {
-                    iClienteDAO.Alterar(clienteParam);
-                    return Ok();
+                    response.Data = iClienteDAO.Alterar(clienteParam);
                 }
                 catch (Exception e)
                 {
-                    return BadRequest("Erro ao alterar cliente");
+                    response.ResponseMessage = e.Message;
+                    //return BadRequest("Erro ao alterar cliente");
+
                 }
             }else
             {
-                return BadRequest("Cliente não encontrado");
+                response.ResponseMessage = "Cliente não encontrado";
             }
+
+            return response;
         }
 
         [Route("listar"), HttpGet]

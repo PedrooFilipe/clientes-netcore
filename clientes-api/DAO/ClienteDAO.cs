@@ -22,10 +22,11 @@ namespace clientes_api.DAO
             contexto.SaveChanges();
         }
 
-        public void Alterar(Cliente cliente)
+        public Cliente Alterar(Cliente cliente)
         {
             contexto.Entry(cliente).State = EntityState.Modified;
             contexto.SaveChanges();
+            return cliente;
         }
 
         public List<Cliente> Listar(string nome)
