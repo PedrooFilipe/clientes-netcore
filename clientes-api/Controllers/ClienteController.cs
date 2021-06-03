@@ -1,12 +1,11 @@
 ﻿using clientes_api.Interfaces;
-using clientes_api.Model;
+using clientes_api.Entidades;
 using clientes_api.Model.Rest;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace clientes_api.Controllers
 {
@@ -116,5 +115,10 @@ namespace clientes_api.Controllers
             }
         }
 
-    }
-}
+        [Route("importar"), HttpPost]
+        public void ImportarArquivo([FromForm] IFormFile file ){
+            Console.WriteLine("aq");
+        }
+
+    }//end of class
+}//end of namespace

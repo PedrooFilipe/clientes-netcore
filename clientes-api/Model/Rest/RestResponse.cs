@@ -18,4 +18,11 @@ namespace clientes_api.Model.Rest
         public int Total { get; set; }
 
     }
+
+    public class Meta
+    {
+        public int Current { get; set; }
+        public int Total { get; set; }
+
+    }
 }

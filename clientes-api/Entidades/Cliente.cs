@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace clientes_api.Model
+namespace clientes_api.Entidades
 {
     [Table("clientes")]
     public class Cliente

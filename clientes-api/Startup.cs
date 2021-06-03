@@ -24,7 +24,7 @@ namespace clientes_api
         {
             services.AddControllers();
 
-            services.AddDbContext<Contexto>(options => options.UseMySql(Configuration.GetConnectionString("mysqlConnection")));
+            // services.AddDbContext<Contexto>(options => options.UseMySql(Configuration.GetConnectionString("mysqlConnection")));
 
             services.AddCors(options =>
             {
@@ -38,6 +38,7 @@ namespace clientes_api
             });
 
             services.AddScoped<IClienteDAO, ClienteDAO>();
+            services.AddScoped<IUsuarioDAO, UsuarioDAO>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

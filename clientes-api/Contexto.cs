@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using clientes_api.Model;
+using clientes_api.Entidades;
 using Microsoft.EntityFrameworkCore;
 
 namespace clientes_api

@@ -1,4 +1,4 @@
-﻿using clientes_api.Model;
+﻿using clientes_api.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
