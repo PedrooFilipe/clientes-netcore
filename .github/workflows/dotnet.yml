@@ -1,9 +1,9 @@
 name: Continous Delivery .NET CORE
 on:
   push:
-    branches: [ master ]
+    tags: v[0-9]+\.[0-9]+\.[0-9]+
   pull_request:
-    branches: [ master ]
+    tags: v[0-9]+\.[0-9]+\.[0-9]+
 
   workflow_dispatch:
 
@@ -22,5 +22,3 @@ jobs:
           script: |
             cd clientes-netcore
             git pull origin master
-            dotnet publish -c Release
-            pm2 reload clientes-api
